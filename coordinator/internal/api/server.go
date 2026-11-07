@@ -25,7 +25,7 @@ import (
 	"github.com/mcastroarroyo/shared-compute/coordinator/internal/store"
 	"github.com/mcastroarroyo/shared-compute/coordinator/internal/wshub"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	stripe "github.com/stripe/stripe-go/v86"
+	stripe "github.com/stripe/stripe-go/v87"
 )
 
 type ctxKey int
