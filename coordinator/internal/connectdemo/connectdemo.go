@@ -39,7 +39,7 @@ import (
 	"strings"
 	"sync"
 
-	stripe "github.com/stripe/stripe-go/v86"
+	stripe "github.com/stripe/stripe-go/v87"
 )
 
 // Handler holds the Stripe client and the demo's tiny in-memory state.
@@ -201,10 +201,8 @@ func (h *Handler) accountLink(ctx context.Context, acctID string) (string, error
 		UseCase: &stripe.V2CoreAccountLinkCreateUseCaseParams{
 			Type: stripe.String("account_onboarding"),
 			AccountOnboarding: &stripe.V2CoreAccountLinkCreateUseCaseAccountOnboardingParams{
-				// Collect information for the "recipient" configuration.
-				Configurations: []*string{stripe.String("recipient")},
-				RefreshURL:     stripe.String(h.baseURL + "/connect/onboard/refresh?accountId=" + urlq(acctID)),
-				ReturnURL:      stripe.String(h.baseURL + "/connect/onboard/return?accountId=" + urlq(acctID)),
+				RefreshURL: stripe.String(h.baseURL + "/connect/onboard/refresh?accountId=" + urlq(acctID)),
+				ReturnURL:  stripe.String(h.baseURL + "/connect/onboard/return?accountId=" + urlq(acctID)),
 			},
 		},
 	})

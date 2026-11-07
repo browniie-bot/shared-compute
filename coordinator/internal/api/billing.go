@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/mcastroarroyo/shared-compute/coordinator/internal/store"
-	stripe "github.com/stripe/stripe-go/v86"
-	"github.com/stripe/stripe-go/v86/webhook"
+	stripe "github.com/stripe/stripe-go/v87"
+	"github.com/stripe/stripe-go/v87/webhook"
 )
 
 // One Stripe *Client* for every request the coordinator makes (billing + payouts).
@@ -201,9 +201,8 @@ func (s *Server) v2OnboardingLink(ctx context.Context, acctID string) (string, e
 		UseCase: &stripe.V2CoreAccountLinkCreateUseCaseParams{
 			Type: stripe.String("account_onboarding"),
 			AccountOnboarding: &stripe.V2CoreAccountLinkCreateUseCaseAccountOnboardingParams{
-				Configurations: []*string{stripe.String("recipient")},
-				RefreshURL:     stripe.String(base + "/connect/onboard/refresh?accountId=" + acctID),
-				ReturnURL:      stripe.String(base + "/connect/onboard/return?accountId=" + acctID),
+				RefreshURL: stripe.String(base + "/connect/onboard/refresh?accountId=" + acctID),
+				ReturnURL:  stripe.String(base + "/connect/onboard/return?accountId=" + acctID),
 			},
 		},
 	})
